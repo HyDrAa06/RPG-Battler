@@ -17,8 +17,8 @@ public:
 	virtual ~Character() = default;
 
 	void healMax();
-	virtual void takeDmg(int dmg);
-	virtual void calculateDmg(int dmg) =0;
+	virtual void takeDmg(const int dmg);
+	virtual int calculateDmg() =0;
 
 	bool isDead() const;
 	std::string getName() const;
