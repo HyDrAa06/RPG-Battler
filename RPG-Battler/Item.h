@@ -7,7 +7,7 @@ enum class ItemType
 	HEALING_POTION,
 	BLADE,
 	MIRROR,
-	RAY,
+	BEAM,
 	SHIELD
 };
 
@@ -23,10 +23,8 @@ public:
 	Item(const std::string name, const int xpPrice, const ItemType itemType);
 	virtual ~Item() = default;
 
-	virtual void use() = 0;
+	virtual void use(Character* target) = 0;
 
-	std::string getName() const;
-	int getPrice() const;
-	ItemType getType(Character* target) const;
+	ItemType getType(Item* target) const;
 };
 

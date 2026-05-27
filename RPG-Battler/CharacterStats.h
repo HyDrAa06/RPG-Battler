@@ -20,3 +20,14 @@ namespace archer_stats
 	const int MIN_DMG = 1;
 	const int MAX_DMG = 8;
 }
+
+namespace item_stats
+{
+	const int HEAL_POTION_XP = 30;
+	const int HEAL_POTION_MIN = 5;
+	const int HEAL_POTION_MAX = 10;
+	const int BLADE_XP = 50;
+	const int MIRROR_XP = 80;
+	const int BEAM_XP = 90;
+	const int SHIELD_XP = 100;
+}

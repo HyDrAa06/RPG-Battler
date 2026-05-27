@@ -13,6 +13,31 @@ bool Character::isDead() const
 	return currentHp <= 0;
 }
 
+int Character::getHp() const
+{
+	return currentHp;
+}
+
+int Character::getMaxHp() const
+{
+	return maxHp;
+}
+
+int Character::getLevel() const
+{
+	return level;
+}
+
+std::string Character::getName() const
+{
+	return name;
+}
+
+void Character::setHp(const int amount)
+{
+	this->currentHp = amount;
+}
+
 void Character::takeDmg(const int dmg)
 {
 	currentHp -= dmg;
@@ -32,20 +57,4 @@ void Character::increaseMaxHp(const int amount)
 void Character::increaseMaxDmg(const int amount)
 {
 	maxDmg = amount;
-}
-
-std::string Character::getName() const {
-	return name;
-}
-
-int Character::getCurrentHp() const {
-	return currentHp;
-}
-
-int Character::getMaxHp() const {
-	return maxHp;
-}
-
-int Character::getLevel() const {
-	return level;
 }

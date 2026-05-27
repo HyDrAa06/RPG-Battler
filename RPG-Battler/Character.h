@@ -21,10 +21,12 @@ public:
 	virtual int calculateDmg() =0;
 
 	bool isDead() const;
-	std::string getName() const;
-	int getCurrentHp() const;
 	int getMaxHp() const;
+	int getHp() const;
 	int getLevel() const;
+	std::string getName() const;
+
+	void setHp(const int amount);
 
 	void levelUp();
 	void increaseMaxHp(const int amount);
