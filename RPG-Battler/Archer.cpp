@@ -33,3 +33,8 @@ bool Archer::changeDmg(const int dmg) const
 
 	return choice;
 }
+
+std::unique_ptr<Character> Archer::clone() const
+{
+	return std::make_unique<Archer>(*this);
+}

@@ -22,3 +22,8 @@ void Warrior::takeDmg(const int dmg)
 
 	Character::takeDmg(actualDmg);
 }
+
+std::unique_ptr<Character> Warrior::clone() const
+{
+	return std::make_unique<Warrior>(*this);
+}

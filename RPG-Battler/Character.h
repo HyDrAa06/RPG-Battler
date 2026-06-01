@@ -27,10 +27,13 @@ public:
 	std::string getName() const;
 
 	void setHp(const int amount);
+	void setName(const std::string name);
 
 	void levelUp();
 	void increaseMaxHp(const int amount);
 	void increaseMaxDmg(const int amount);
+
+	virtual std::unique_ptr<Character> clone() const = 0;
 
 };
 

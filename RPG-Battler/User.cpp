@@ -1,4 +1,6 @@
 #include "User.h"
+#include "CharacterStats.h"
+#include "Character.h"
 
 User::User(const std::string& username, const std::string& password) : username(username), password(password),
 	totalXp(0), unspentXp(0), matchesPlayed(0), matchesWon(0)
@@ -25,10 +27,26 @@ bool User::spendXp(const int amount)
 
 void User::addHero(std::unique_ptr<Character> character)
 {
-	ownedCharacters.push_back(character);
+	ownedCharacters.push_back(std::move(character));
 }
 
 void User::addItem(std::unique_ptr<Item> item)
 {
-	ownedItems.push_back(item);
+	ownedItems.push_back(std::move(item));
+}
+
+bool User::buyHero(const Character* prototype, const std::string& name)
+{
+	int heroCost = cost::HERO_COST;
+
+	if (!spendXp(heroCost))
+	{
+		return false;
+	}
+
+	std::unique_ptr<Character> clone = prototype->clone();
+	clone->setName(name);
+	ownedCharacters.push_back(std::move(clone));
+
+	return true;
 }

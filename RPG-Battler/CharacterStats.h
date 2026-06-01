@@ -1,5 +1,10 @@
 #pragma once
 
+namespace cost
+{
+	const int HERO_COST = 50;
+}
+
 namespace warrior_stats
 {
 	const int MAX_HP = 20;

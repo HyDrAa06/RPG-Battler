@@ -20,6 +20,12 @@ int Mage::calculateDmg()
 	return dmg;
 }
 
+std::unique_ptr<Character> Mage::clone() const 
+{
+	return std::make_unique<Mage>(*this);
+}
+
+
 bool Mage::changeDmg(const int dmg) const
 {
 	int choice = -1;

@@ -38,6 +38,12 @@ void Character::setHp(const int amount)
 	this->currentHp = amount;
 }
 
+void Character::setName(const std::string name)
+{
+	this->name = name;
+}
+
+
 void Character::takeDmg(const int dmg)
 {
 	currentHp -= dmg;
