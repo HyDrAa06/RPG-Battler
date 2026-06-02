@@ -4,7 +4,9 @@
 class Blade : public Item
 {
 public:
-	Blade(const std::string name);
+	Blade();
 	void use(Character* target) override;
+	std::unique_ptr<Item> clone() const override;
+
 };
 

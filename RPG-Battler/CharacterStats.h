@@ -1,8 +1,15 @@
 #pragma once
 
+namespace upgrade
+{
+	const int HP_UPGRADE = 2;
+	const int DMG_UPGRADE = 1;
+}
+
 namespace cost
 {
 	const int HERO_COST = 50;
+	const int LVL_UP_COST = 100;
 }
 
 namespace warrior_stats

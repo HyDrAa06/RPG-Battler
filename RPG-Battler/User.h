@@ -28,6 +28,7 @@ public:
 	void addItem(std::unique_ptr<Item> item);
 
 	bool buyHero(const Character* prototype, const std::string& name);
-	bool buyItem();
+	bool buyItem(const Item* prototype);
+	bool buyLvlUp(const int heroIndex, int upgradeChoice);
 };
 

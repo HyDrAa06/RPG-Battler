@@ -5,5 +5,7 @@ class Beam : public Item {
 public:
     Beam();
     void use(Character* target) override;
+    std::unique_ptr<Item> clone() const override;
+
 };
 

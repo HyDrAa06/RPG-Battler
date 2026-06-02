@@ -3,7 +3,9 @@
 class HealPotion : public Item
 {
 public:
-	HealPotion(const std::string name);
+	HealPotion();
 	void use(Character* target) override;
+	std::unique_ptr<Item> clone() const override;
+
 };
 

@@ -50,3 +50,42 @@ bool User::buyHero(const Character* prototype, const std::string& name)
 
 	return true;
 }
+
+bool User::buyItem(const Item* prototype)
+{
+	int itemCost = prototype->getPrice();
+	if (!spendXp(itemCost))
+	{
+		return false;
+	}
+
+	std::unique_ptr<Item> clone = prototype->clone();
+	ownedItems.push_back(std::move(clone));
+
+	return true;
+}
+
+bool User::buyLvlUp(const int heroIndex, int upgradeChoice)
+{
+	if (heroIndex < 0 || heroIndex >= ownedCharacters.size())
+	{
+		return false;
+	}
+	if (!spendXp(cost::LVL_UP_COST))
+	{
+		return false;
+	}
+
+	if (upgradeChoice == 1)
+	{
+		ownedCharacters[heroIndex]->increaseMaxHp(upgrade::HP_UPGRADE);
+	}
+	else
+	{
+		ownedCharacters[heroIndex]->increaseMaxDmg(upgrade::DMG_UPGRADE);
+	}
+
+	ownedCharacters[heroIndex]->levelUp();
+	return true;
+	
+}
