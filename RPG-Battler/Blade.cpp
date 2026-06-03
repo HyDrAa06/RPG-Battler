@@ -15,5 +15,5 @@ void Blade::use(Character* target)
 
 std::unique_ptr<Item> Blade::clone() const
 {
-	return std::make_unique<Item>(*this);
+	return std::make_unique<Blade>(*this);
 }

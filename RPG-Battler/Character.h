@@ -17,8 +17,8 @@ public:
 	virtual ~Character() = default;
 
 	void healMax();
-	virtual void takeDmg(const int dmg);
-	virtual int calculateDmg() =0;
+	virtual void takeDmg(const int dmg, bool isAbilityBlocked = false);
+	virtual int calculateDmg(bool isAbilityBlocked = false) =0;
 
 	bool isDead() const;
 	int getMaxHp() const;

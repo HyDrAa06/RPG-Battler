@@ -15,5 +15,5 @@ void Beam::use(Character* target) {
 
 std::unique_ptr<Item> Beam::clone() const
 {
-    return std::make_unique<Item>(*this);
+    return std::make_unique<Beam>(*this);
 }

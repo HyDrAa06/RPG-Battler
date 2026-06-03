@@ -89,3 +89,42 @@ bool User::buyLvlUp(const int heroIndex, int upgradeChoice)
 	return true;
 	
 }
+
+bool User::hasItem(const ItemType type) const
+{
+	for (auto& item : ownedItems)
+	{
+		if (item->getType() == type)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+Item* User::getItem(const ItemType type)
+{
+	for (const auto& item : ownedItems)
+	{
+		if (item->getType() == type) return item.get();
+	}
+	return nullptr;
+}
+
+std::string& User::getUsername()
+{
+	return username;
+}
+
+void User::useItem(ItemType type)
+{
+	for (auto item = ownedItems.begin();item != ownedItems.end();++item)
+	{
+		if ((*item)->getType() == type)
+		{
+			ownedItems.erase(item);
+			return;
+		}
+	}
+}

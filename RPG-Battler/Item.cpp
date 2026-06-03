@@ -4,7 +4,7 @@ Item::Item(const int xpPrice, const ItemType itemType) : xpPrice(xpPrice), itemT
 {
 }
 
-ItemType Item::getType(Item* target) const
+ItemType Item::getType() const
 {
     return itemType;
 }

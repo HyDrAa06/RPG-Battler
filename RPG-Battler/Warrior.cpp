@@ -13,8 +13,15 @@ int Warrior::calculateDmg()
 	return dmg;
 }
 
-void Warrior::takeDmg(const int dmg)
+void Warrior::takeDmg(const int dmg, bool isAbilityBlocked)
 {
+	if (isAbilityBlocked)
+	{
+		std::cout << "[MIRROR] Warrior's defense is blocked! He takes full damage: " << dmg << "\n";
+		Character::takeDmg(dmg, isAbilityBlocked);
+		return;
+	}
+
 	int blockAmount = (rand() % 4) + 1;
 	int actualDmg = dmg - blockAmount;
 

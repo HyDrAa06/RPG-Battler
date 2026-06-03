@@ -7,9 +7,16 @@ Archer::Archer(const std::string name) : Character(name, archer_stats::MAX_HP, a
 {
 }
 
-int Archer::calculateDmg()
+int Archer::calculateDmg(const bool isAbilityBlocked)
 {
 	int dmg = (rand() % (maxDmg - minDmg + 1)) + minDmg;
+
+
+	if (isAbilityBlocked)
+	{
+		std::cout << "[MIRROR] Special ability is blocked!";
+		return dmg;
+	}
 
 	if (dmg <= 4)
 	{

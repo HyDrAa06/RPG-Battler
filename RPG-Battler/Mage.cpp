@@ -7,9 +7,15 @@ Mage::Mage(const std::string name) : Character(name, mage_stats::MAX_HP, mage_st
 {
 }
 
-int Mage::calculateDmg()
+int Mage::calculateDmg(bool isAbilityBlocked)
 {
 	int dmg = (rand() % (maxDmg - minDmg + 1)) + minDmg;
+
+	if (isAbilityBlocked)
+	{
+		std::cout << "[MIRROR] Special ability is blocked!";
+		return dmg;
+	}
 
 	bool change = changeDmg(dmg);
 	if (change == true)

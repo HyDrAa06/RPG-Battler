@@ -15,5 +15,5 @@ void Mirror::use(Character* target) {
 
 std::unique_ptr<Item> Mirror::clone() const
 {
-    return std::make_unique<Item>(*this);
+    return std::make_unique<Mirror>(*this);
 }

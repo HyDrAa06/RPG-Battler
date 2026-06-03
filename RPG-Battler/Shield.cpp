@@ -15,5 +15,5 @@ void Shield::use(Character* target)
 
 std::unique_ptr<Item> Shield::clone() const
 {
-	return std::make_unique<Item>(*this);
+	return std::make_unique<Shield>(*this);
 }

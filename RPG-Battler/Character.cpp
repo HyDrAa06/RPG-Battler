@@ -44,7 +44,7 @@ void Character::setName(const std::string name)
 }
 
 
-void Character::takeDmg(const int dmg)
+void Character::takeDmg(const int dmg, bool isAbilityBlocked)
 {
 	currentHp -= dmg;
 	if (currentHp < 0)

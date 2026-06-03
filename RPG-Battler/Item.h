@@ -24,7 +24,7 @@ public:
 
 	virtual void use(Character* target) = 0;
 
-	ItemType getType(Item* target) const;
+	ItemType getType() const;
 	int getPrice() const;
 	virtual std::unique_ptr<Item> clone() const = 0;
 

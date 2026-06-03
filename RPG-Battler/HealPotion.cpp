@@ -26,5 +26,5 @@ void HealPotion::use(Character* target)
 
 std::unique_ptr<Item> HealPotion::clone() const
 {
-	return std::make_unique<Item>(*this);
+	return std::make_unique<HealPotion>(*this);
 }
