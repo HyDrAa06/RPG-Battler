@@ -9,5 +9,8 @@ public:
 	void takeDmg(const int dmg, bool isAbilityBlocked = false) override;
 
 	std::unique_ptr<Character> clone() const override;
+
+	virtual int getClassId() const override;
+
 };
 

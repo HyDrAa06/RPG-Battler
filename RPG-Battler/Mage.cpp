@@ -31,6 +31,11 @@ std::unique_ptr<Character> Mage::clone() const
 	return std::make_unique<Mage>(*this);
 }
 
+int Mage::getClassId() const
+{
+	return 2;
+}
+
 
 bool Mage::changeDmg(const int dmg) const
 {

@@ -1,6 +1,16 @@
 #include "User.h"
 #include "CharacterStats.h"
 #include "Character.h"
+#include <iostream>
+#include <fstream>
+#include "Warrior.h"
+#include "Mage.h"
+#include "Archer.h"
+#include "HealPotion.h"
+#include "Shield.h"
+#include "Mirror.h"
+#include "Beam.h"
+#include "Blade.h"
 
 User::User(const std::string& username, const std::string& password) : username(username), password(password),
 	totalXp(0), unspentXp(0), matchesPlayed(0), matchesWon(0)
@@ -115,6 +125,107 @@ Item* User::getItem(const ItemType type)
 std::string& User::getUsername()
 {
 	return username;
+}
+
+void User::saveFile(std::ofstream& out) const
+{
+	out << username << " " << password << " " << totalXp << " " << unspentXp 
+		<< " " << matchesPlayed << " " << matchesWon <<"\n";
+
+	out << ownedCharacters.size() << "\n";
+	for (const auto& hero : ownedCharacters)
+	{
+		out << hero->getClassId() << " "
+			<< hero->getName() << " "
+			<< hero->getMaxHp() << " "
+			<< hero->getHp() << " "
+			<< hero->getLevel() << " "
+			<< hero->getMinDmg() << " "
+			<< hero->getMaxDmg() << "\n";
+	}
+
+	out << ownedItems.size() << "\n";
+	for (const auto& item : ownedItems)
+	{
+		out << static_cast<int>(item->getType()) << "\n";
+	}
+}
+
+void User::loadFile(std::ifstream& in)
+{
+	in >> username >> password >> totalXp >> unspentXp >> matchesPlayed >> matchesWon;
+
+	size_t heroesCount;
+	in >> heroesCount;
+
+	ownedCharacters.clear();
+
+	for (size_t i = 0;i < heroesCount; ++i)
+	{
+		int classId, maxHp, hp, level, minDmg, maxDmg;
+		std::string heroName;
+
+		in >> classId >> heroName >> maxHp >> hp >> level >> minDmg >> maxDmg;
+		std::unique_ptr<Character> newHero;
+
+		if (classId == 1) 
+		{
+			newHero = std::make_unique<Warrior>(heroName);
+		}
+		else if (classId == 2)
+		{
+			newHero = std::make_unique<Mage>(heroName);
+		}
+		else if (classId == 3)
+		{
+			newHero = std::make_unique<Archer>(heroName);
+		}
+
+		if (newHero)
+		{
+			newHero->setMaxHp(maxHp);
+			newHero->setHp(hp);
+			newHero->setLevel(level);
+			newHero->setMinDmg(minDmg);
+			newHero->setMaxDmg(maxDmg);
+
+			ownedCharacters.push_back(std::move(newHero));
+		}
+
+		size_t itemsCount;
+		in >> itemsCount;
+		ownedItems.clear();
+
+		for (int i = 0;i < itemsCount;++i)
+		{
+			int typeInt;
+			in >> typeInt;
+			ItemType type = static_cast<ItemType>(typeInt);
+			
+			std::unique_ptr<Item> newItem;
+
+			if (type == ItemType::HEALING_POTION) newItem = std::make_unique<HealPotion>();
+			else if (type == ItemType::BLADE) newItem = std::make_unique<Blade>();
+			else if (type == ItemType::MIRROR) newItem = std::make_unique<Mirror>();
+			else if (type == ItemType::SHIELD) newItem = std::make_unique<Shield>();
+			else if (type == ItemType::BEAM) newItem = std::make_unique<Beam>();
+
+			if (newItem)
+			{
+				ownedItems.push_back(std::move(newItem));
+			}
+		}
+
+	}
+}
+
+void User::recordMatch(bool isWinner)
+{
+	matchesPlayed++;
+	if (isWinner)
+	{
+		matchesWon++;
+	}
 }
 
 void User::useItem(ItemType type)

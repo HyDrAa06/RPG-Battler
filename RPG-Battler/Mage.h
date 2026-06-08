@@ -10,5 +10,8 @@ public:
 
 	std::unique_ptr<Character> clone() const override;
 
+	virtual int getClassId() const override;
+
+
 };
 

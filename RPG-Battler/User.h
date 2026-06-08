@@ -37,5 +37,9 @@ public:
 
 	std::string& getUsername();
 
+	void saveFile(std::ofstream& out) const;
+	void loadFile(std::ifstream& in);
+
+	void recordMatch(bool isWinner);
 };
 

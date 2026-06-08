@@ -34,3 +34,8 @@ std::unique_ptr<Character> Warrior::clone() const
 {
 	return std::make_unique<Warrior>(*this);
 }
+
+int Warrior::getClassId() const
+{
+	return 1;
+}

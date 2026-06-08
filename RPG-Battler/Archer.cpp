@@ -41,6 +41,11 @@ bool Archer::changeDmg(const int dmg) const
 	return choice;
 }
 
+int Archer::getClassId() const
+{
+	return 3;
+}
+
 std::unique_ptr<Character> Archer::clone() const
 {
 	return std::make_unique<Archer>(*this);

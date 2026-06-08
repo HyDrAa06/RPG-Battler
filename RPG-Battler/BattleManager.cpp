@@ -153,14 +153,23 @@ void BattleManager::start()
 		std::cout << "\nThe winner is " << player1->getUsername() << "!\n";
 		player1->addXp(10);
 		player2->addXp(5);
+
+		player1->recordMatch(true);
+		player2->recordMatch(false);
+
 	}
 	else
 	{
 		std::cout << "\nThe winner is " << player2->getUsername() << "!\n";
 		player2->addXp(10);
 		player1->addXp(5);
+
+		player2->recordMatch(true);
+		player1	->recordMatch(false);
 	}
 
 	hero1->healMax();
 	hero2->healMax();
+
+
 }
