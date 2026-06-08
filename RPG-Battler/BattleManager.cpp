@@ -120,7 +120,8 @@ void BattleManager::playTurn(User* attackerUser, Character* attackerHero, User* 
 }
 
 BattleManager::BattleManager(User* p1, Character* h1, User* p2, Character* h2) :
-	player1(p1), player2(p2), hero1(h1), hero2(h2)
+	player1(p1), player2(p2), hero1(h1), hero2(h2), 
+	p1BladeActive(false), p1MirrorActive(false), p2BladeActive(false), p2MirrorActive(false)
 {
 }
 

@@ -13,7 +13,7 @@
 #include "Blade.h"
 
 User::User(const std::string& username, const std::string& password) : username(username), password(password),
-	totalXp(0), unspentXp(0), matchesPlayed(0), matchesWon(0)
+	totalXp(0), unspentXp(0), matchesPlayed(0), matchesWon(0), rankedPlace(0)
 {
 
 }
@@ -33,6 +33,11 @@ bool User::spendXp(const int amount)
 
 	unspentXp -= amount;
 	return true;
+}
+
+bool User::checkPassword(const std::string pass) const
+{
+	return pass == password;
 }
 
 void User::addHero(std::unique_ptr<Character> character)
@@ -125,6 +130,21 @@ Item* User::getItem(const ItemType type)
 std::string& User::getUsername()
 {
 	return username;
+}
+
+int User::getMatchesWon() const
+{
+	return matchesWon;
+}
+
+int User::getTotalXp() const
+{
+	return totalXp;
+}
+
+int User::getWinrate() const
+{
+	return matchesPlayed - matchesWon;
 }
 
 void User::saveFile(std::ofstream& out) const
@@ -226,6 +246,44 @@ void User::recordMatch(bool isWinner)
 	{
 		matchesWon++;
 	}
+}
+
+int User::getUnspentXp() const
+{
+	return unspentXp;
+}
+
+Character* User::getHero(int index) const
+{
+	if (index >= 0 && index < ownedCharacters.size())
+	{
+		return ownedCharacters[index].get();
+	}
+
+	return nullptr;
+}
+
+void User::printHeroes() const
+{
+	if (ownedCharacters.empty())
+	{
+		std::cout << "This player doesn't have any heroes!\n";
+		return;
+	}
+
+	for (size_t i = 0; i < ownedCharacters.size(); ++i)
+	{
+		Character* h = ownedCharacters[i].get();
+
+		std::cout << "[" << i << "] " << h->getName()
+			<< " (HP: " << h->getHp() << "/" << h->getMaxHp()
+			<< ", Level: " << h->getLevel() << ")\n";
+	}
+}
+
+int User::getHeroesCount() const
+{
+	return ownedCharacters.size();
 }
 
 void User::useItem(ItemType type)

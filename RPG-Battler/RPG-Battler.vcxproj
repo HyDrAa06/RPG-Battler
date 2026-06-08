@@ -131,6 +131,7 @@
     <ClCompile Include="BattleManager.cpp" />
     <ClCompile Include="Blade.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="GameSystem.cpp" />
     <ClCompile Include="HealPotion.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Mage.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Blade.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterStats.h" />
+    <ClInclude Include="GameSystem.h" />
     <ClInclude Include="HealPotion.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Mage.h" />

@@ -24,6 +24,8 @@ public:
 	void addXp(const int amount);
 	bool spendXp(const int amount);
 
+	bool checkPassword(const std::string pass) const;
+
 	void addHero(std::unique_ptr<Character> character);
 	void addItem(std::unique_ptr<Item> item);
 
@@ -36,10 +38,18 @@ public:
 	void useItem(ItemType type);
 
 	std::string& getUsername();
+	int getMatchesWon() const;
+	int getTotalXp() const;
+	int getWinrate() const;
 
 	void saveFile(std::ofstream& out) const;
 	void loadFile(std::ifstream& in);
 
 	void recordMatch(bool isWinner);
+
+	int getUnspentXp() const;
+	Character* getHero(int index) const;
+	void printHeroes() const;
+	int getHeroesCount() const;
 };
 

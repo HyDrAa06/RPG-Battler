@@ -1,11 +1,15 @@
-// RPG-Battler.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+#include "GameSystem.h"
+#include <ctime>
+#include <cstdlib>
 #include <iostream>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	srand(static_cast<unsigned int>(time(0)));
+	std::cout << "Loading...\n";
+
+	GameSystem game("rpg_data.txt");
+	game.run();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

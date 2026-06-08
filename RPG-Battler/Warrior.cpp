@@ -7,7 +7,7 @@ Warrior::Warrior(const std::string name) : Character(name, warrior_stats::MAX_HP
 {
 }
 
-int Warrior::calculateDmg()
+int Warrior::calculateDmg(bool isAbilityBlocked)
 {
 	int dmg = (rand() % (maxDmg - minDmg + 1)) + minDmg;
 	return dmg;

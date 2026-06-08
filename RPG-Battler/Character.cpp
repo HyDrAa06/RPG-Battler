@@ -1,7 +1,7 @@
 #include "Character.h"
 
 Character::Character(const std::string& name, const int maxHp, const int minDmg, const int maxDmg) : 
-	name(name), maxHp(maxHp), minDmg(minDmg), maxDmg(maxDmg), level(1){}
+	name(name), maxHp(maxHp),currentHp(maxHp), minDmg(minDmg), maxDmg(maxDmg), level(1){}
 
 int Character::getClassId() const
 {
